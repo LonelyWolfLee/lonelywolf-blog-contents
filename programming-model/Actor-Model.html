@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>[Programming Model] Actor Model</title>
+
+    <link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css' rel='stylesheet' />
+    <script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+
+</head>
+
+<body>
+    <div class="MsoNormal" style="margin: 0cm 0cm 8pt;">
+        <strong><span lang="EN-US" style="font-family: &quot;맑은 고딕&quot;; mso-ascii-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-fareast-font-family: &quot;맑은 고딕&quot;; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-latin;"><span style="font-size: large;">What is Actor Model?</span></span></strong><br
+        />
+        <span lang="EN-US">&nbsp; 1973</span>년에 소개 된 개념으로<span lang="EN-US">,&nbsp;</span>분산 환경에서의 병렬 연산을 고려하여 프로그래밍을 하기
+        위해 개발 된 모델이다<span lang="EN-US">. Erlang</span>이 해당 컨셉을 사용하여 개발 된 언어의 대표적인 예이다<span lang="EN-US">. Actor</span>를 기본
+        단위로 하여 동작 하는 모델로<span lang="EN-US">,&nbsp;</span>각각의&nbsp;<span lang="EN-US">Actor</span>는&nbsp;<span lang="EN-US">Behavior, State, Mailbox</span>로
+        구성 되어 있다<span lang="EN-US">.&nbsp;</span>각&nbsp;<span lang="EN-US">Actor</span>들 간에는&nbsp;<span lang="EN-US">message</span>를
+        전달 하는 방식<span lang="EN-US">(Event-Driven)</span>으로 통신을 한다<span lang="EN-US">. 다르게 말하면 어떤 상태를 가진 사람들이 있고, 각각은 메일를 통해 명령을 지시 받아 수행 하는 형태라고 보면 된다.</span><br
+        />
+        <span lang="EN-US"><br /></span><span lang="EN-US">Actor</span>는 다음과 같은 특징을 가지고 있다<span lang="EN-US">.</span></div>
+    <ul>
+        <li><span style="font-family: 맑은 고딕;"><span lang="EN-US">Behavior</span>는 전달 받은&nbsp;<span lang="EN-US">message</span>에
+            의해 결정 된다<span lang="EN-US">.</span></span>
+        </li>
+        <li><span style="font-family: 맑은 고딕;"><span lang="EN-US"></span></span><span style="font-family: 맑은 고딕;"><span lang="EN-US">State</span>는
+            공유 되지 않으며 각자의 고유한 상태를 나타낸다<span lang="EN-US">.(message</span>에 의해 변경 가능<span lang="EN-US">)</span></span>
+        </li>
+        <li><span style="font-family: 맑은 고딕;"><span lang="EN-US"></span></span><span style="font-family: 맑은 고딕;"><span lang="EN-US">Mailbox</span>는
+            받은&nbsp;<span lang="EN-US">message</span>를 순서대로 쌓아두고 하나씩 처리한다<span lang="EN-US">.</span></span>
+        </li>
+    </ul>
+    <span lang="EN-US">Actor</span>는&nbsp;<span lang="EN-US">message</span>를 받으면 다음과 같은 행동을 수행 할 수 있다<span lang="EN-US">.</span><br
+    />
+    <ul>
+        <li><span style="font-family: 맑은 고딕;">유한개의&nbsp;<span lang="EN-US">message</span>를 다른&nbsp;<span lang="EN-US">Actor</span>들에게
+            보낸다<span lang="EN-US"><o:p></o:p></span></span>
+        </li>
+        <li><span style="font-family: 굴림;"></span><span style="font-family: 맑은 고딕;">유한개의 개로운&nbsp;<span lang="EN-US">Actor</span>를
+            생성 한다<span lang="EN-US"><o:p></o:p></span></span>
+        </li>
+        <li><span style="font-family: 굴림;"></span><span style="font-family: 맑은 고딕;">다음에 받을&nbsp;<span lang="EN-US">message</span>를
+            위한&nbsp;<span lang="EN-US">Behavior</span>를 지정 한다<span lang="EN-US">.</span></span>
+        </li>
+    </ul>
+    <span lang="EN-US"></span><br />
+    <div>
+        <span lang="EN-US"><br /></span></div>
+    <span lang="EN-US">&nbsp; “</span>모든 것은 객체<span lang="EN-US">(Object)</span>다<span lang="EN-US">”&nbsp;</span>라고 가정하는&nbsp;
+    <span
+        lang="EN-US">OOP(Object-Oriented Programming)&nbsp;</span>와 유사 하게&nbsp;<span lang="EN-US">Actor Model</span>에서는&nbsp;<span lang="EN-US">“</span>모든
+        것은 액터<span lang="EN-US">(Actor)</span>다<span lang="EN-US">”&nbsp;</span>라는 개념을 가지고 있다<span lang="EN-US">.&nbsp;</span>둘의
+        설명이 유사 한 것 처럼&nbsp;<span lang="EN-US">Object&nbsp;</span>또한 각자의&nbsp;<span lang="EN-US">State(member variable)</span>을
+        가지고 있으며&nbsp;<span lang="EN-US">Behavior(Method)&nbsp;</span>에 의해 그 동작이 결정 된다<span lang="EN-US">.</span><br />
+        <div>
+            <br /> &nbsp; 하지만 Object는 단일 Context에서 Method call을 하며 해당 Method의 결과를 동기 적으로 기다린다. 하지만 Actor는 각각의 Context를 가지고
+            있으며 message를 비동기적으로 처리한다. 결국 Actor는 각각이 경량한 process라고 할 수 있다.<br />
+            <br />
+            <div class="separator" style="clear: both; text-align: center;">
+                <a href="http://3.bp.blogspot.com/-uKoa5-M1mKw/VbAxvIljiLI/AAAAAAAABHM/zFBRILKpZJg/s1600/Actor%2BModel.png" imageanchor="1"
+                    style="margin-left: 1em; margin-right: 1em;"><img border="0" height="300" src="https://3.bp.blogspot.com/-uKoa5-M1mKw/VbAxvIljiLI/AAAAAAAABHM/zFBRILKpZJg/s400/Actor%2BModel.png" width="400" /></a></div>
+            <br />
+            <div class="MsoNormal" style="margin: 0cm 0cm 8pt;">
+                <br />
+                <b><span style="font-size: large;">Why use Actor Model?</span></b><br /> &nbsp; PC 자체의 성능을 올리는 방식(Scale-up)이
+                한계에 봉착 하면서, 분산 환경에서 다수의 processor를 장칙한 multi-processing을 사용(Scale-out)는 것을 선호 하게 되었다. 그러기 위해 thread를 사용 하게
+                되는데, 이 경우 race condition, deadlock 등 thread 관련 문제들이 발생 할 여지가 있다. 그래서 이 경우 해당 문제를 해결 한 Actor Model을 사용 할 것을
+                권장 한다.<br />
+                <br /></div>
+            <div class="MsoNormal" style="margin: 0cm 0cm 8pt;">
+                <b style="mso-bidi-font-weight: normal;"><span lang="EN-US">Advantage</span></b><br />
+                <ul>
+                    <li>각자의 State를 가지고 있으며 shared resource를 사용 하지 않으므로 이로 인한 Thread 문제를 걱정 할 필요가 없다.</li>
+                    <li>각각의 message에 대한 Behavior 만 이해 하면 되기에 이해를 하기가 쉽다.</li>
+                    <li>Scale-out이 용이 하다.</li>
+                </ul>
+                <br />
+                <b style="mso-bidi-font-weight: normal;"><span lang="EN-US"><span style="font-size: large;">Disadvantage</span></span></b></div>
+            <div class="MsoNormal" style="margin: 0cm 0cm 8pt;">
+                <ul>
+                    <li>Method에 비해 속도가 느리다.</li>
+                    <li>OOP에 익숙한 사람이 처음에 구현 시 어려움을 느낄 수 있다.</li>
+                </ul>
+            </div>
+        </div>
+
+</body>
+
+</html>

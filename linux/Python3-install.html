@@ -10,13 +10,66 @@
     <script>
         hljs.initHighlightingOnLoad();
     </script>
-
 </head>
 
 <body>
     <p>보통 Linux나 Raspberry Pi에서 Python이라고 치면 Python2가 사용이 된다. 이와 마찬가지로 pip(파이썬 패키지 매니져)를 사용하여 패키지를 설치 하면(eq. pip install ), Python2용 모듈이 설치 된다.</p>
     <p>하지만 여러가지 이유로 Python3를 사용하는 경우가 있는데 이 경우에 Linux 환경에서는 python3라고 명시적으로 사용 해주어야 하며, pip의 경우에도 pip3라고 명시적으로 사용 해주어야 한다.</p>
 
+    <div>
+        <b>[python 프로그램 실행]</b>
+        <table border="1px">
+            <tr>
+                <td>Python2</td>
+                <td>python [python file]</td>
+            </tr>
+            <tr>
+                <td>Python3</td>
+                <td>python3 [python file]</td>
+            </tr>
+        </table>
+    </div>
+    <br/>
+    <div>
+        <b>[pip 설치]</b>
+        <table border="1px">
+            <tr>
+                <td>Python2</td>
+                <td>sudo apt-get install python-pip</td>
+            </tr>
+            <tr>
+                <td>Python3</td>
+                <td>sudo apt-get install python3-pip</td>
+            </tr>
+        </table>
+        * 위와 같이 python3용 pip를 설치 할 경우 pip-3.2가 설치된다.(2015.11.19일 기준)<br/>
+        * pip와 pip3의 경우엔 보통 기본적으로 설치 되어 있다.
+    </div>
+
+    <br/>
+    <div>
+        <b>[pip를 사용 하여 package 설치]</b>
+        <table border="1px">
+            <tr>
+                <td>Python2</td>
+                <td>sudo pip install [package]<br/>sudo pip2 install [package] </td>
+            </tr>
+            <tr>
+                <td>Python3</td>
+                <td>sudo pip3 install [package]<br/>sudo pip-3.2 install [package]</td>
+            </tr>
+        </table>
+    </div>
+
+    <br/>
+    <br/>
+    잠시 헤매고 고민하던 것이 억울해서 정리해 보았다.
+    
+    <style>
+        td {
+            padding: 10px;
+        }
+    </style>
 </body>
 
 </html>

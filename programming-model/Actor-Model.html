@@ -12,8 +12,49 @@
     </script>
 
 </head>
-
+Actor는 다음과 같은 특징을 가지고 있다.
 <body>
+    <div>
+        <strong>What is Actor Model?</strong><br />
+        1973년에 소개 된 개념으로, 분산 환경에서의 병렬 연산을 고려하여 프로그래밍을 하기 위해 개발 된 모델이다. 
+        Erlang이 해당 컨셉을 사용하여 개발 된 언어의 대표적인 예이다. 
+        Actor를 기본 단위로 하여 동작 하는 모델로, 각각의 Actor는 Behavior, State, Mailbox로 구성 되어 있다. 
+        각 Actor들 간에는 message를 전달 하는 방식(Event-Driven)으로 통신을 한다. 
+        다르게 말하면 어떤 상태를 가진 사람들이 있고, 각각은 메일를 통해 명령을 지시 받아 수행 하는 형태라고 보면 된다.
+
+        <p>
+            Actor는 다음과 같은 특징을 가지고 있다.
+            <ul>
+                <li>Behavior는 전달 받은 message에 의해 결정 된다.</li>
+                <li>State는 공유 되지 않으며 각자의 고유한 상태를 나타낸다.(message에 의해 변경 가능)</li>
+                <li>Mailbox는 받은 message를 순서대로 쌓아두고 하나씩 처리한다.</li>
+            </ul>
+        </p>
+        <p>
+            Actor는 message를 받으면 다음과 같은 행동을 수행 할 수 있다.
+            <ul>
+                <li>유한개의 message를 다른 Actor들에게 보낸다</li>
+                <li>유한개의 개로운 Actor를 생성 한다</li>
+                <li>다음에 받을 message를 위한 Behavior를 지정 한다.</li>
+            </ul>
+        </p>
+        <p>
+            “모든 것은 객체(Object)다” 라고 가정하는  OOP(Object-Oriented Programming) 와 유사 하게 Actor Model에서는 “모든 것은 액터(Actor)다” 라는 개념을 가지고 있다. 
+            둘의 설명이 유사 한 것 처럼 Object 또한 각자의 State(member variable)을 가지고 있으며 Behavior(Method) 에 의해 그 동작이 결정 된다.
+        </p>
+        <p>
+            하지만 Object는 단일 Context에서 Method call을 하며 해당 Method의 결과를 동기 적으로 기다린다. 
+            하지만 Actor는 각각의 Context를 가지고 있으며 message를 비동기적으로 처리한다. 결국 Actor는 각각이 경량한 process라고 할 수 있다.
+        </p>
+        <div class="separator" style="clear: both; text-align: center;">
+            <a href="http://3.bp.blogspot.com/-uKoa5-M1mKw/VbAxvIljiLI/AAAAAAAABHM/zFBRILKpZJg/s1600/Actor%2BModel.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+                    <img border="0" height="300" src="https://3.bp.blogspot.com/-uKoa5-M1mKw/VbAxvIljiLI/AAAAAAAABHM/zFBRILKpZJg/s400/Actor%2BModel.png" width="400" />
+            </a>
+        </div>
+    </div>
+    <div>
+
+    </div>
     <div class="MsoNormal" style="margin: 0cm 0cm 8pt;">
         <strong><span lang="EN-US" style="font-family: &quot;맑은 고딕&quot;; mso-ascii-theme-font: minor-latin; mso-bidi-font-family: &quot;Times New Roman&quot;; mso-bidi-theme-font: minor-bidi; mso-fareast-font-family: &quot;맑은 고딕&quot;; mso-fareast-theme-font: minor-fareast; mso-hansi-theme-font: minor-latin;"><span style="font-size: large;">What is Actor Model?</span></span></strong><br
         />

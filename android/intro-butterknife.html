@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>[Android] View에 대한 Bind를 간단하게 해주는 Butter Knife</title>
+
+    <link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/school-book.min.css' rel='stylesheet' />
+    <script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+</head>
+
+<body>
+    <h4><span style="color: red;">v 8.6.0 기준으로 소개 됩니다.</span></h4>
+    <b>공식 페이지</b> : <a href="http://jakewharton.github.io/butterknife/">http://jakewharton.github.io/butterknife/</a><br />
+    <b>한줄 소개</b> : Field와 Method를 Android View 에 Bind 하기 위한 Annotation을 제공한다.<br />
+    <b>라이센스</b> : the Apache License, Version 2.0<br />
+    <br />
+    <h2>Example</h2>
+    TextView title에 R.id.title을 할당하기 위해서 기존에는 아래와 같이 하였다.
+
+    <br />
+    <pre><code class="java">TextView title;
+...
+@Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.simple_activity);
+    title = (TextView)activity.findViewById(R.id.title);
+    // TODO Use fields...
+ }
+</code></pre>
+    <br /> 하지만 Butter Knife를 사용하면 아래와 같이 사용이 가능 하다.
+
+    <br />
+    <pre><code class="java">@Bind(R.id.title) TextView title;
+...
+@Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.simple_activity);
+    ButterKnife.bind(this);
+    // TODO Use fields...
+ }
+</code></pre>
+    <br />
+    <h2>
+        Installation</h2>
+    <b>참고</b> : <a href="http://jakewharton.github.io/butterknife/#download">http://jakewharton.github.io/butterknife/#download</a><br
+    />
+    <br /> 설정을 위한 Library 획득은 아래와 같은 방법이 있다.<br />
+    <ul>
+        <li>class path with jar</li>
+        <li>Maven</li>
+        <li><span style="color: cyan;">Gradle</span></li>
+    </ul>
+    <br /> IDE 설정을 추가로 해주어야 하므로 아래의 IDE 중에 선택을 한다<br />
+    <ul>
+        <li>Eclipse</li>
+        <li><span style="color: cyan;">IntelliJ</span></li>
+    </ul>
+    <br /> 안드로이드 개발 환경은 현재에 외서는 <span style="color: cyan;">Gradle + IntelliJ(Android Studio)</span>를 사용 하고 있으므로, 해당 상황에 대해서만
+    기술 하도록 하겠다. 그 외의 조합은 첨부한 링크를 참고 하면 된다.<br />
+    <ol>
+        <h4>
+            <li>Set Gradle (Module의 bundle.gradle)</li>
+        </h4>
+
+        <div>
+            dependencies에 다음을 추가 한다(실제 version을 확인하여 추가)
+            <pre><code>compile 'com.jakewharton:butterknife:7.0.1'</code></pre>
+        </div>
+
+        <div>
+            android에 다음을 추가 한다
+            <pre><code>lintOptions {
+    disable 'InvalidPackage'
+}</code></pre>
+        </div>
+        <div>
+
+            설정에 따라서 android에 다음을 추가 해야 하는 경우도 있다
+            <pre><code>packagingOptions {
+    exclude 'META-INF/services/javax.annotation.processing.Processor'
+}</code></pre>
+        </div>
+        <h4>
+            <li>Configure IDE(IntelliJ)</li>
+        </h4>
+        <div>
+            Android Studio 2.0을 기준으로,<br /> File &gt; Other Settings &gt; Default Settings &gt; Build, Execution, Deployment
+            &gt; Compiler &gt; Annotation Processors. Check "Enable annotation processing"
+        </div>
+    </ol>
+    <br />
+    <h2>
+        Basic Usage</h2>
+    <div>
+        기본적인 동작 구조는 다음과 같다.</div>
+    <div>
+        <ol>
+            <li>Binding을 위한 Annotation을 설정 한다</li>
+            <li>View 의 생성 시점에 <code>ButterKnife.bind</code>를 호출 한다</li>
+            <li>Fragment의 view change등으로 인해 binding을 reset 해야 하는 경우 해당 시점에 <code>ButterKnife.unbind</code>를 호출한 후 2번 과정을 다시 수행한다&nbsp;
+                <span style="color: red;">(Optional)</span>
+            </li>
+        </ol>
+    </div>
+    <br />
+    <h2>
+        Usages via Example</h2>
+    <pre><code class="java">// Activity Binding
+class MyActivity extends Activity {
+    @Bind(R.id.title) TextView title;
+    
+    @Override public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.simple_activity);
+        ButterKnife.bind(this);
+        // TODO Use fields...
+    }
+}
+</code></pre>
+    <pre><code class="java">// Non-Activity Binding
+class MyFragment extends Fragment {
+    @Bind(R.id.title) TextView title;
+    
+    @Override public View onCreateView(LayoutInflater inflater, 
+                                       ViewGroup container, 
+                                       Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.my_fragment, container, false);
+        ButterKnife.bind(this);
+        // TODO Use fields...
+        return view;
+    }
+}
+</code></pre>
+    <pre><code class="java">// Simple Listener Binding
+@OnClick(R.id.some_button)
+public void onSomeButtonClick(Button button) {
+    // Do Somthing ...
+}
+</code></pre>
+    <pre><code class="java">// Multiple Listeners Binding
+@OnClick({R.id.user1, R.id.user2})
+public void onUserSelected(User user) {
+    if(user.isValid()) {
+        // Do Somthing ...
+    }
+}
+</code></pre>
+    <pre><code class="java">// Custom View Listener Binding
+public class CustomView extends View {
+    @OnClick
+    public void onClick() {
+        // Do Somthing ...
+    }
+}
+</code></pre>
+    <br />
+    <a href="http://jakewharton.github.io/butterknife/" target="_blank">공식 페이지</a>에서 더 많은 사용 예제를 확인 할 수 있다.
+
+</body>
+
+</html>

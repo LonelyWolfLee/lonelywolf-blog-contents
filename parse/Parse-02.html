@@ -15,27 +15,29 @@
 </head>
 
 <body>
-    <h4>말 하기 귀찮은 것</h4>
+    <h2>말 하기 귀찮은 것</h2>
     계정은 개인의 Email을 ID로 하여 생성 할 수 있다. 그 이외에 Facebook, GitHub, Google+ 계정등 사용 하여 등록이 가능하다. 나는 Google+ 계정을 사용 하였다. 이런건 알아서 해보도록 하자.<br />
     <br />
 
-    <h4>Create Cloud App</h4>
+    <h2>Create Cloud App</h2>
     <div class="separator" style="clear: both; text-align: center;">
-        <a href="http://4.bp.blogspot.com/-KbZai8yUfbg/VeLgOD3qVdI/AAAAAAAABJM/Yllg0QdTdVI/s1600/Parse%2BApp%2B%25EB%25A7%258C%25EB%2593%25A4%25EA%25B8%25B0%2B1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="188" src="http://4.bp.blogspot.com/-KbZai8yUfbg/VeLgOD3qVdI/AAAAAAAABJM/Yllg0QdTdVI/s400/Parse%2BApp%2B%25EB%25A7%258C%25EB%2593%25A4%25EA%25B8%25B0%2B1.png" width="400" /></a>
+        <a href="http://4.bp.blogspot.com/-KbZai8yUfbg/VeLgOD3qVdI/AAAAAAAABJM/Yllg0QdTdVI/s1600/Parse%2BApp%2B%25EB%25A7%258C%25EB%2593%25A4%25EA%25B8%25B0%2B1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="188" src="https://4.bp.blogspot.com/-KbZai8yUfbg/VeLgOD3qVdI/AAAAAAAABJM/Yllg0QdTdVI/s400/Parse%2BApp%2B%25EB%25A7%258C%25EB%2593%25A4%25EA%25B8%25B0%2B1.png" width="400"></a>
     </div>
     다음으로 해야 할 것은 Parse에 자신이 사용할 Service에 대한 Cloud App을 생성하는 일이다. 위에 보이는 대로 처음 로그인 화면에서 표시된 부분을 선택 한다.<br />
     <br />
     <div class="separator" style="clear: both; text-align: center;">
-        <a href="http://4.bp.blogspot.com/-nxTsTPUeYCE/VeTjEA6fMuI/AAAAAAAABJo/Lwzm0eFOSiA/s1600/Parse%2BApp%2B%25EB%25A7%258C%25EB%2593%25A4%25EA%25B8%25B0%2B2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="188" src="http://4.bp.blogspot.com/-nxTsTPUeYCE/VeTjEA6fMuI/AAAAAAAABJo/Lwzm0eFOSiA/s400/Parse%2BApp%2B%25EB%25A7%258C%25EB%2593%25A4%25EA%25B8%25B0%2B2.png" width="400" /></a>
+        <a href="http://4.bp.blogspot.com/-nxTsTPUeYCE/VeTjEA6fMuI/AAAAAAAABJo/Lwzm0eFOSiA/s1600/Parse%2BApp%2B%25EB%25A7%258C%25EB%2593%25A4%25EA%25B8%25B0%2B2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="188" src="https://4.bp.blogspot.com/-nxTsTPUeYCE/VeTjEA6fMuI/AAAAAAAABJo/Lwzm0eFOSiA/s400/Parse%2BApp%2B%25EB%25A7%258C%25EB%2593%25A4%25EA%25B8%25B0%2B2.png" width="400"></a>
     </div>
     이미 다른 App을 만들 었다면 App List가 나오겠지만, 처음 사용 하는 것이라면 다음과 같이 App을 만들기 위한 이름을 입력 하는 창이 나온다. 해당 창에 적당한 이름을 입력하고 "Create App" 버튼을 누르면 App이 생성 되며 Application ID 등의 Key 값을 준다. 해당 값들은 꼭 필요한 값이지만 Dash Board의 Settings&gt;Keys에서 확인이 가능 하니 일단 넘어가도록 한다.<br />
     <br />
 
-    <h4>Create User for App</h4>
+    <h2>Create User for App</h2>
     Kinvey나 Kii와 같은 BaaS 서비스의 경우, 본인이 생성 한 앱에 대한 유저 관리를 홈페이지의 Dashboad를 통해 생성 및 관리 할 수 있었다. 하지만 Parse에서는 유저의 정보 또한 하나의 데이터로 보며 ParseObject가 할 수 있는 행동 들을 할 수 있다.<br />
     <br /> 하지만 유저의 정보는 따로 ParseUser라는 객체를 통해 관리 되며, Signup, Login 등의 유저 관리를 위한 추가적인 API를 제공 하고 있다.<br />
-    <br /> 결론은 Parse에서의 User 등록/권한/수정 등은 App에서 자체적으로 코드를 통해 구현 해야 한다는 것이다. Android App에서의 User 관리 법 또한 홈페이지에 잘 나와 있다(<a href="https://www.parse.com/docs/android/guide#users" target="_blank">여기</a>)<br />
-    <br /> 안타까운 점은 계정등록은 사용자 등록, Facebook, Twitter만 가능 하며(Google+ 계정은 왜 안되는 건가! ㅠㅠ), 기타 3rd Party 계정도 지원하는 방법을 제공 하고 있지만 수월하지는 않다는 점이다.(<a href="http://blog.parse.com/announcements/bring-your-own-login/" target="_blank">3rd Party 계정 사용 방법</a>)
+    <br /> 결론은 Parse에서의 User 등록/권한/수정 등은 App에서 자체적으로 코드를 통해 구현 해야 한다는 것이다. Android App에서의 User 관리 법 또한 홈페이지에 잘 나와 있다
+    (<a href="https://www.parse.com/docs/android/guide#users" target="_blank">여기</a>)<br />
+    <br /> 안타까운 점은 계정등록은 사용자 등록, Facebook, Twitter만 가능 하며(Google+ 계정은 왜 안되는 건가! ㅠㅠ), 기타 3rd Party 계정도 지원하는 방법을 제공 하고 있지만 수월하지는 않다는 점이다.
+    (<a href="http://blog.parse.com/announcements/bring-your-own-login/" target="_blank">3rd Party 계정 사용 방법</a>)
 </body>
 
 </html>
